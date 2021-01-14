@@ -16,22 +16,23 @@ import java.util.Set;
 class MyworkApplicationTests {
 
 	@Autowired
-	private UserBLMapper userBLMapper;
+	private UserBLService userBLService;
 
+	/*对用户并联分析的数据进行清空*/
+	@Test
+	void delete(){
+		userBLService.deletedAll();
+	}
 
-
+	/*对用户并联信息进行分析*/
 	@Test
 	void BLWorkAnalysis(){
 		userBLService.runAll();
 	}
 
 
-
-	@Test
-	void delete(){
-		userBLService.deletedAll();
-	}
-
+	@Autowired
+	private UserBLMapper userBLMapper;
 
 	@Test
 	void contextLoads() {
@@ -44,8 +45,6 @@ class MyworkApplicationTests {
 		}
 	}
 
-	@Autowired
-	private UserBLService userBLService;
 
 	@Test
 	void test1(){

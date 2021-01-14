@@ -33,6 +33,9 @@ public class UserBLServiceImpl implements UserBLService {
     public void analysisArea() {
         //1.查询出所有工贸，set集合
         List<UserBL> userBLS = userBLMapper.selectList(null);
+        if (userBLS == null ||userBLS.size() == 0){
+            return;
+        }
         Set<String> areaSet = new HashSet<>();
         for (UserBL userBL : userBLS) {
             String area = userBL.getArea();
@@ -57,6 +60,7 @@ public class UserBLServiceImpl implements UserBLService {
                     }
                 }
             }
+            //设置未答复率
             areaAnalysis.setNoReplyRate((float)areaAnalysis.getNoReplyCount()/ areaAnalysis.getComplaintCount());
 
             //3.2将AreaAnalysis对象插入数据表
@@ -69,6 +73,9 @@ public class UserBLServiceImpl implements UserBLService {
     public void analysisIndustry() {
         //1.查询出所有产业，set集合
         List<UserBL> userBLS = userBLMapper.selectList(null);
+        if (userBLS == null ||userBLS.size() == 0){
+            return;
+        }
         Set<String> industrySet = new HashSet<>();
         for (UserBL userBL : userBLS) {
             String industry = userBL.getIndustry();
@@ -105,6 +112,9 @@ public class UserBLServiceImpl implements UserBLService {
     public void analysisComplaint() {
         //1.查询出所有抱怨类型，存到set集合
         List<UserBL> userBLS = userBLMapper.selectList(null);
+        if (userBLS == null ||userBLS.size() == 0){
+            return;
+        }
         Set<String> complaintSet = new HashSet<>();
         for (UserBL userBL : userBLS) {
             String complaintType = userBL.getComplaintType();
@@ -148,6 +158,9 @@ public class UserBLServiceImpl implements UserBLService {
 
         QueryWrapper<UserBL> wrapper = new QueryWrapper<>(userBLBy);
         List<UserBL> userBLS = userBLMapper.selectList(wrapper);
+        if (userBLS == null ||userBLS.size() == 0){
+            return;
+        }
         Set<String> areaSet = new HashSet<>();
         for (UserBL userBL : userBLS) {
             areaSet.add(userBL.getArea());
@@ -194,6 +207,9 @@ public class UserBLServiceImpl implements UserBLService {
 
         QueryWrapper<UserBL> wrapper = new QueryWrapper<>(userBLBy);
         List<UserBL> userBLS = userBLMapper.selectList(wrapper);
+        if (userBLS == null ||userBLS.size() == 0){
+            return;
+        }
 
         //set集合里面存储产业.工贸,例如：冰箱.上海
         Set<String> industryAreaSet = new HashSet<>();
