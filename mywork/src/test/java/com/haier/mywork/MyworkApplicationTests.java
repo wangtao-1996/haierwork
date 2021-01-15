@@ -7,6 +7,7 @@ import com.haier.mywork.service.UserBLService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import java.util.HashSet;
 import java.util.List;
@@ -81,6 +82,22 @@ class MyworkApplicationTests {
 		for (String areaIn : areaInSet) {
 			System.out.println(areaIn);
 		}
+	}
+
+
+	@Autowired
+	private RedisTemplate redisTemplate;
+
+
+	@Test
+	public void testRedis(){
+		redisTemplate.opsForValue().set("name","汪涛");
+	}
+
+	@Test
+	public void testRedis2(){
+		String name = (String) redisTemplate.opsForValue().get("name");
+		System.out.println(name);
 	}
 
 }

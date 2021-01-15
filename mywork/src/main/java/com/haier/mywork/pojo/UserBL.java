@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("userbl")
+@TableName("user_bl")
 public class UserBL {
 
     private String infoId;
