@@ -1,6 +1,7 @@
 package com.haier.mywork.pojo;
 
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +14,7 @@ import java.util.Date;
 @TableName("user_bl")
 public class UserBL {
 
+    @TableId
     private String infoId;
     private String orderId;
     private String industry;

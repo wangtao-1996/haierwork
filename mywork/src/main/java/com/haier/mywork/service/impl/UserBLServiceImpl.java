@@ -39,6 +39,7 @@ public class UserBLServiceImpl implements UserBLService {
         Set<String> areaSet = new HashSet<>();
         for (UserBL userBL : userBLS) {
             String area = userBL.getArea();
+            area.replace("小微","");
             areaSet.add(area);
         }
 
