@@ -39,7 +39,7 @@ public class UserBLServiceImpl implements UserBLService {
         Set<String> areaSet = new HashSet<>();
         for (UserBL userBL : userBLS) {
             String area = userBL.getArea();
-            area.replace("小微","");
+            area = area.replace("小微", "");
             areaSet.add(area);
         }
 
@@ -48,7 +48,7 @@ public class UserBLServiceImpl implements UserBLService {
             //3.1创建AreaAnalysis对象，根据工贸查询并联量、答复量、未答复量、未答复率
             AreaAnalysis areaAnalysis = new AreaAnalysis(null,area,0,0,0,0f);
             for (UserBL userBL : userBLS) {
-                if (area.equals(userBL.getArea())){
+                if (area.equals(userBL.getArea().replace("小微",""))){
                     //设置并联量
                     areaAnalysis.setComplaintCount(areaAnalysis.getComplaintCount() + 1);
 
@@ -164,7 +164,7 @@ public class UserBLServiceImpl implements UserBLService {
         }
         Set<String> areaSet = new HashSet<>();
         for (UserBL userBL : userBLS) {
-            areaSet.add(userBL.getArea());
+            areaSet.add(userBL.getArea().replace("小微",""));
         }
 
         //2.遍历工贸集合，获取每个工贸
@@ -172,7 +172,7 @@ public class UserBLServiceImpl implements UserBLService {
             //3.1创建ManagerAnalysis对象，根据工贸查询副总、抱怨量、答复量、未答复量、未答复率
             ManagerAnalysis managerAnalysis = new ManagerAnalysis(null, area, null, 0, 0, 0, 0f);
            for (UserBL userBL : userBLS) {
-                if (area.equals(userBL.getArea())){
+                if (area.equals(userBL.getArea().replace("小微",""))){
                     //设置副总
                     if (managerAnalysis.getManager() == null){
                         managerAnalysis.setManager(userBL.getWorkmanOne());
@@ -222,12 +222,12 @@ public class UserBLServiceImpl implements UserBLService {
         for (String industryArea : industryAreaSet) {
 
             String industry = industryArea.split("\\.")[0];
-            String area = industryArea.split("\\.")[1];
+            String area = industryArea.split("\\.")[1].replace("小微","");
 
             //3.1创建WorkermanAnalysis对象，根据产业、工贸查询售后经理、抱怨量、答复量、未答复量、未答复率
             WorkermanAnalysis workermanAnalysis = new WorkermanAnalysis(null,industry,area,null,0,0,0,0f);
             for (UserBL userBL : userBLS) {
-                if (industry.equals(userBL.getIndustry()) && area.equals(userBL.getArea())){
+                if (industry.equals(userBL.getIndustry()) && area.equals(userBL.getArea().replace("小微",""))){
                     //设置售后经理
                     if (workermanAnalysis.getWorkman() == null){
                         workermanAnalysis.setWorkman(userBL.getWorkmanOne());
